@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+    <body>
+        <h1>Todo</h1>
+        <p><a th:href="@{/tasks/new/}">新規タスク</a></p>
+        <table>
+        	<thead>
+            	<tr>
+                <th>No.</th>
+                <th>タスク</th>
+                <th>詳細</th>
+                <th>日付</th>
+                <th>%</th>
+                <th></th>
+            	</tr>
+        	</thead>
+        	<tbody>
+            	<tr th:each="task, st : ${tasks}">
+                <td th:text="${st.count}"></td>
+                <td th:text="${task.taskName}"></td>
+                <td th:text="${task.description}"></td>
+                <td th:text="${task.dueDate}"></td>
+                <td th:text="${task.percentage}"></td>
+                <td><a th:href="@{'/tasks/' + ${task.taskId}}">更新</a></td>
+            	</tr>
+            </tbody>
+        </table>
+    </body>
+</html>
