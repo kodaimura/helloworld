@@ -1,6 +1,8 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head></head>
+<head>
+	<title th:text="#{title}"></title>
+</head>
     <body>
         <h1>Todo</h1>
         <p><a th:href="@{/tasks/new/}">新規タスク</a></p>
