@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\TaskController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api/tasks', [TaskController::class, 'getTasks']);
+Route::get('/{any}', function () {
+    return view('welcome');
+})->where('any', '.*');

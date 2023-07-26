@@ -13,4 +13,16 @@ class TaskController extends Controller
         $tasks = DB::table('task')->get();
         return response()->json($tasks);
     }
+/*
+    public function createTask(Request $request): JsonResponse {
+
+        $tasks = DB::table('task')->insert([
+            'task_name' => $taskName,
+            'description' => $description,
+            'due_date' => $dueDate,
+            'percentage' => $percentage, 
+        ]);
+        return response()->json($tasks);
+    }
+*/
 }
