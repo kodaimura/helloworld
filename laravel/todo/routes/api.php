@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/api/tasks', [TaskController::class, 'getTasks']);
+// api.phpに設定したら /api がつく形で受け付ける 
+Route::get('/tasks', [TaskController::class, 'getTasks']);
