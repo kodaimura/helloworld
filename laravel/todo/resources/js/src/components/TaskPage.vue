@@ -18,7 +18,7 @@ export default {
         description: '',
         dueDate: '',
         percentage: 0,
-        error: 'エラーなし',
+        error: '',
       }
     },
     methods: {
