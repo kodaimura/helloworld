@@ -6,6 +6,7 @@
     <tr><input type="date" v-model="dueDate"></tr>
     <tr><input type="number" v-model="percentage"></tr>
     <tr><button @click="register()">登録</button></tr>
+    <tr><button @click="deleteTask()">削除</button></tr>
   </table>
 </template>
 
@@ -86,6 +87,19 @@ export default {
         .catch(error => {
           this.error = error.message;
         })
+      },
+      deleteTask(data) {
+        if (this.id !== undefined) {
+          fetch(`/api/tasks/${this.id}`, {
+            method: 'DELETE',
+          })
+          .then(response => {
+            this.$router.push('/');
+          })
+          .catch(error => {
+            this.error = error.message;
+          })
+        }
       },
       fetchTask() {
         if (this.id !== undefined) {

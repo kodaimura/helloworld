@@ -34,7 +34,7 @@ class TaskController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        
+
         $taskName = $request->input('task_name');
         $description = $request->input('description');
         $dueDate = $request->input('due_date');
@@ -75,6 +75,13 @@ class TaskController extends Controller
             'due_date' => $dueDate,
             'percentage' => $percentage, 
         ]);
+        return response()->json(200);
+    }
+
+    public function deleteTask($id): JsonResponse {
+        DB::table('task')
+        ->where('id', $id)
+        ->delete();
         return response()->json(200);
     }
 }
