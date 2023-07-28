@@ -17,15 +17,41 @@ class TaskController extends Controller
         return response()->json($tasks);
     }
 
-    public function postTask(Request $request): JsonResponse {
-        /*
-        $request->validate([
+    public function getTask($id): JsonResponse {
+        $tasks = DB::table('task')->where('id', $id)->first();
+        return response()->json($tasks);
+    }
+
+    public function putTask(Request $request, $id): JsonResponse {
+        $rules = [
             'task_name' => ['required', 'max:50'],
             'due_date' => ['date'],
             'percentage' => ['integer'],
-        ]);
-        */
+        ];
 
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        
+        $taskName = $request->input('task_name');
+        $description = $request->input('description');
+        $dueDate = $request->input('due_date');
+        $percentage = $request->input('percentage');
+
+        DB::table('task')
+        ->where('id', $id)
+        ->update([
+            'task_name' => $taskName,
+            'description' => $description,
+            'due_date' => $dueDate,
+            'percentage' => $percentage, 
+        ]);
+        return response()->json(200);
+    }
+
+    public function postTask(Request $request): JsonResponse {
         $rules = [
             'task_name' => ['required', 'max:50'],
             'due_date' => ['date'],

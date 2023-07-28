@@ -3,8 +3,7 @@
   <table v-for="task in tasks">
     <tr>
       <td>{{task.id}}</td>
-
-      <td>{{task.task_name}}</td>
+      <td><router-link :to="{name: 'task', params: {id: task.id}}">{{task.task_name}}</router-link></td>
       <td>{{task.description}}</td>
       <td>{{task.due_date}}</td>
       <td>{{task.percentage}}</td>
@@ -16,7 +15,7 @@
 export default {
   name: "TaskListPage",
   beforeMount() {
-    this.fetchRepresent()
+    this.fetchTasks()
   },
   data() {
     return {
@@ -24,7 +23,7 @@ export default {
     };
   },
   methods: {
-    async fetchRepresent() {
+    async fetchTasks() {
       fetch("/api/tasks")
       .then(response => {
         return response.json()

@@ -12,6 +12,11 @@ const router = createRouter({
         },
         {
             path: "/new",
+            name: "newtask",
+            component: TaskPage,
+        },
+        {
+            path: "/:id",
             name: "task",
             component: TaskPage,
         },
