@@ -20,20 +20,32 @@ class _TodoPageState extends State<TodoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Todo List')),
-      body: FutureBuilder<List<Todo>>(
-        future: _todos,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No todos available.'));
-          } else {
-            return TodoList(todos: snapshot.data!);
-          }
-        },
+      appBar: AppBar(
+        title: Text('Todo List'),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.teal[100]!, Colors.teal[300]!],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: FutureBuilder<List<Todo>>(
+          future: _todos,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.red)));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: Text('No todos available.', style: TextStyle(fontSize: 18, color: Colors.grey)));
+            } else {
+              return TodoList(todos: snapshot.data!);
+            }
+          },
+        ),
       ),
     );
   }

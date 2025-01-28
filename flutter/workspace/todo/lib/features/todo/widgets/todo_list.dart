@@ -12,7 +12,10 @@ class TodoList extends StatelessWidget {
     return ListView.builder(
       itemCount: todos.length,
       itemBuilder: (context, index) {
-        return TodoItem(todo: todos[index]);
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 8),
+          child: TodoItem(todo: todos[index]),
+        );
       },
     );
   }
