@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: TextTheme(
-          bodyMedium: TextStyle(color: Colors.black87, fontSize: 16), // bodyText2 -> bodyMedium
-          titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24), // headline6 -> titleLarge
+          bodyMedium: TextStyle(color: Colors.black87, fontSize: 16),
+          titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
         ),
         appBarTheme: AppBarTheme(
           color: Colors.teal[700],
